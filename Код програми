@@ -1,0 +1,69 @@
+#include <iostream>
+#include <cmath>
+
+class Smiley {
+private:
+    double R;  // Радіус обличчя
+    double r;  // Радіус ока
+
+public:
+    // Конструктор без параметрів
+    Smiley() : R(0), r(0) {
+        std::cout << "Конструктор без параметрів викликано." << std::endl;
+    }
+
+    // Конструктор з параметрами
+    Smiley(double radiusFace, double radiusEye) : R(radiusFace), r(radiusEye) {
+        std::cout << "Конструктор з параметрами викликано." << std::endl;
+    }
+
+    // Деструктор
+    ~Smiley() {
+        std::cout << "Деструктор викликано." << std::endl;
+    }
+
+    // Методи для отримання та присвоєння значень R і r
+    double getRadiusFace() const {
+        return R;
+    }
+
+    double getRadiusEye() const {
+        return r;
+    }
+
+    void setRadiusFace(double radiusFace) {
+        R = radiusFace;
+    }
+
+    void setRadiusEye(double radiusEye) {
+        r = radiusEye;
+    }
+
+    // Метод для обчислення площі обличчя (без площі ока)
+    double calculateFaceArea() const {
+        return M_PI * R * R;
+    }
+
+    // Функція для виведення інформації про радіуси та площу обличчя (без площі ока)
+    void printInfo() const {
+        std::cout << "Радіус обличчя: " << getRadiusFace() << std::endl;
+        std::cout << "Радіус ока: " << getRadiusEye() << std::endl;
+        std::cout << "Площа обличчя (без ока): " << calculateFaceArea() << std::endl;
+    }
+};
+
+int main() {
+    // Створення екземпляра класу "Смайлик" з використанням конструкторів
+    Smiley *smiley1 = new Smiley();  // Виклик конструктора без параметрів
+    Smiley *smiley2 = new Smiley(5.0, 1.0);  // Виклик конструктора з параметрами
+
+    // Виклик компонент-функцій та виведення інформації
+    smiley1->printInfo();
+    smiley2->printInfo();
+
+    // Виклик деструкторів
+    delete smiley1;
+    delete smiley2;
+
+    return 0;
+}
